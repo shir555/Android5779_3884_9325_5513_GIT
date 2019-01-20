@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_avTravels"
+            android:icon="@android:drawable/ic_menu_directions"
+            android:title="@string/avTravels" />
+        <item
+            android:id="@+id/nav_myTavels"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/myTravels" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/exit" />
+    </group>
+
+
+</menu>
