@@ -87,6 +87,6 @@ public class DataBaseList implements Backend {
             if (driver.equals(item))
                 return true;
         }
-        return true;
+        return false;
     }
 }

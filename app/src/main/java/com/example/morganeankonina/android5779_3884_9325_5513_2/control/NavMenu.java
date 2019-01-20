@@ -87,7 +87,8 @@ public class NavMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_avTravels) {
-
+            Intent available = new Intent(NavMenu.this,AvailableTravels.class);
+            startActivity(available);
         } else if (id == R.id.nav_myTavels) {
 
         } else if (id == R.id.nav_exit) {

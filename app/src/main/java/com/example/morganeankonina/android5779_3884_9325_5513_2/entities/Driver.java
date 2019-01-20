@@ -136,7 +136,7 @@ public class Driver {
         if (obj == null || getClass() != obj.getClass())
             return false;
         Driver driver = (Driver) obj;
-        return ((this.getUsername() == driver.username )&& (this.getPassword()== driver.password));
+        return (this.getUsername().equals(driver.getUsername()) && this.getPassword().equals(driver.getPassword()));
     }
 }
 
