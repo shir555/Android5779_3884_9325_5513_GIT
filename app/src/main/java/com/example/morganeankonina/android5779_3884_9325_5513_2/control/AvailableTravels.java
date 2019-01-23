@@ -17,6 +17,8 @@ public class AvailableTravels extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         BlankFragment fragment = new BlankFragment();
+        //fragmentTransaction.add(R.id.frag1,fragment);
+        fragmentTransaction.commit();
     }
 
 }

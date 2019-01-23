@@ -8,7 +8,8 @@
     android:orientation="vertical"
     android:id="@+id/availableTravels">
 
-    <fragment
+
+    <!--<fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
@@ -24,6 +25,21 @@
         android:name="com.example.morganeankonina.android5779_3884_9325_5513_2.control.AvailableTravelsDetails"
         android:id="@+id/availableDetails">
 
-    </fragment>
+    </fragment>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frag1"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frag2"
+        android:orientation="vertical">
+    </LinearLayout>
 
 </LinearLayout>
