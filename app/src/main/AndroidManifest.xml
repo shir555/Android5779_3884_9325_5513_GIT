@@ -35,7 +35,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".control.AvailableTravels"></activity>
+        <activity android:name=".control.AvailableTravels" />
+        <activity android:name=".control.MyTravels"></activity>
     </application>
 
 </manifest>
