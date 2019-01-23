@@ -12,12 +12,16 @@
     <Spinner
         android:id="@+id/filterSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
     <fragment
         android:id="@+id/myTravelsListFrag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:name="com.example.morganeankonina.android5779_3884_9325_5513_2.control.MyTravelsList"
+        android:layout_weight="15">
+
     </fragment>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Ba
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.BackendFactory;
 
 import java.sql.Time;
+import java.util.Random;
 
 /**
  * The Travel class describes the properties of the travel
@@ -22,7 +23,10 @@ public class Travel {
     private String clientName;
     private String clientPhone;
     private String clientEmail;
+    private int price;
 
+
+    Random rand = new Random();
     /**
      * Empty ctor
      */
@@ -37,6 +41,8 @@ public class Travel {
         this.clientName = "";
         this.clientPhone = "";
         this.clientEmail = "";
+        this.price=rand.nextInt(40)+10;
+
     }
 
     /**
@@ -60,6 +66,7 @@ public class Travel {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientEmail = clientEmail;
+        this.price=rand.nextInt(40)+10;
 
         try {
             BackendFactory backendFactory = new BackendFactory();

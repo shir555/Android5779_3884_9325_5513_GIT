@@ -75,6 +75,7 @@ public class MyTravelsList extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_my_travels_list, container, false);
         listView=(ListView)view.findViewById(R.id.my_travels_list_view);
@@ -84,7 +85,6 @@ public class MyTravelsList extends Fragment {
             {
                 try
                 {
-                    listView=(ListView)view.findViewById(R.id.my_travels_list_view);
                     ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), R.layout.list_view_layout, R.id.rowItem, backend.getTravels());
                     listView.setAdapter(adapter);
                     return null;
