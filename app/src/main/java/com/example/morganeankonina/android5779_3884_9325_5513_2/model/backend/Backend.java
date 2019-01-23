@@ -19,6 +19,11 @@ public interface Backend
      */
     public void addTravel(Travel travel) throws Exception;
 
+    /**The function returns a list of all travels
+     *
+     * @return
+     */
+    public ArrayList<String> getTravels();
     /**
      *
      * @param driver
@@ -33,5 +38,6 @@ public interface Backend
      * @return
      */
     public boolean checkDriverValid (Driver driver);
+
 
 }

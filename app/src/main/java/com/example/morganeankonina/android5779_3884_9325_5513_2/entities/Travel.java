@@ -1,5 +1,8 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.entities;
 
+import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Backend;
+import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.BackendFactory;
+
 import java.sql.Time;
 
 /**
@@ -57,6 +60,17 @@ public class Travel {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientEmail = clientEmail;
+
+        try {
+            BackendFactory backendFactory = new BackendFactory();
+            Backend backend = backendFactory.getInstance();
+            backend.addTravel(this);
+        }
+        catch (Exception e)
+        {
+
+        }
+
     }
     /**-------------------------Getters-------------------------------------------------------------
      */
@@ -141,6 +155,17 @@ public class Travel {
                 ", clientName='" + clientName +  '\n'+
                 ", clientPhone=" + clientPhone + '\n'+
                 ", clientEmail='" + clientEmail ;
+    }
+
+    public String toStringLocation() {
+        return  "Start Location: " + startLocation + '\n' +
+                "Destination: " + destination + '\n';
+    }
+
+    public String toStringClientDetails() {
+        return "Name: " + clientName + '\n' +
+                "Phone: " + clientPhone + '\n'+
+                "Email: " + clientEmail;
     }
 
     /**

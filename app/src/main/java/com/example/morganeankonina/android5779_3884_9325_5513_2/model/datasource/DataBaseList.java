@@ -1,6 +1,7 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.model.datasource;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 
 import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Driver;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Travel;
@@ -41,6 +42,14 @@ public class DataBaseList implements Backend {
         }
     }
 
+    @Override
+    public ArrayList<String> getTravels() {
+        ArrayList<String> listTravels=new ArrayList<>();
+        for(Travel item:travels){
+            listTravels.add(item.toStringLocation());
+        }
+        return listTravels;
+    }
     public String getTravel()
     {
         String travelsList="";

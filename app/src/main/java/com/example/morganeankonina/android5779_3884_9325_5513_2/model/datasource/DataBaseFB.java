@@ -31,6 +31,11 @@ public class DataBaseFB implements Backend {
     }
 
     @Override
+    public ArrayList<String> getTravels() {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return "DatabaseFB{}";
     }

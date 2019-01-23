@@ -92,8 +92,8 @@ public class NavMenu extends AppCompatActivity
         } else if (id == R.id.nav_myTavels) {
 
         } else if (id == R.id.nav_exit) {
-
-        }
+            finish();
+            moveTaskToBack(true);        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
