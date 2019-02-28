@@ -14,11 +14,6 @@ public class AvailableTravels extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_travels);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        //AvailableTravelsList fragment = new AvailableTravelsList();
-        //fragmentTransaction.add(R.id.frag1,fragment);
-        //fragmentTransaction.commit();
     }
 
 }

@@ -96,7 +96,7 @@ public class AvailableTravelsList extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Travel travel = listTravels.get(position);
-                    AvailableTravelsDetails fragDetailsTravels = (AvailableTravelsDetails) getActivity().getFragmentManager().findFragmentById("AvailableTravelsDetailsTag");
+                    AvailableTravelsDetails fragDetailsTravels = (AvailableTravelsDetails) getActivity().getFragmentManager().findFragmentByTag("AvailableTravelsDetailsTag");
                     //fragDetailsTravels.insertDetailsTravel(travel);
                 }
             });
@@ -113,76 +113,59 @@ public class AvailableTravelsList extends Fragment {
          * this function calls when the list that in listView of this fragment need to change
          * @param list new list that will be in the listView
          */
-        public void updateListView(ArrayList<Travel> list)
-        {
+        public void updateListView(ArrayList<Travel> list) {
             try {
                 listTravels = list;//put the new list
-                adapter=new ArrayAdapter<Travel>(getActivity(),R.layout.my_ride_item,myList){//adapter that connect between
+                adapter = new ArrayAdapter<Travel>(getActivity(), R.layout.row_item, listTravels) {//adapter that connect between
                     /**
                      * this function calls on every Ride in myList.it design the Ride looking in listView
-                     * @param position the Ride in position place in myList
+                     *
+                     * @param position    the Ride in position place in myList
                      * @param convertView the current view
-                     * @param parent the parent of view
+                     * @param parent      the parent of view
                      */
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = View.inflate(getActivity(), R.layout.my_ride_item, null);//init convertView
-            }
-            //take view widgets from view that define in my_ride_item xml file
-            TextView nameTextView = (TextView) convertView.findViewById(R.id.name_my_ride_item);
-            TextView dateTextView = (TextView) convertView.findViewById(R.id.date_my_ride_item);
-            TextView sourceTextView = (TextView) convertView.findViewById(R.id.source_my_ride_item);
-            TextView destTextView = (TextView) convertView.findViewById(R.id.dest_my_ride_item);
-            Button addContact = (Button) convertView.findViewById(R.id.button_my_add_contact);
-            addContact.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {//implement the onClick of button that add client of ride to contacr in phone
-                    View parent = (View) view.getParent().getParent().getParent().getParent().getParent();
-                    ListView ls = (ListView) parent.getParent();//the listView
-                    int position = ls.getPositionForView(parent);//get the position of the ride that the user click on it's button-TakeRide
-                    Travel travel = myList.get(position);//get ride
-                    //insert to contact
-                    Intent intent = new Intent(Intent.ACTION_INSERT);
-                    intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-                    intent.putExtra(ContactsContract.Intents.Insert.NAME, ride.getClientName());
-                    intent.putExtra(ContactsContract.Intents.Insert.PHONE, ride.getClientPhone());
-                    startActivity(intent);
-                }
-            });
-            Ride ride=(Ride)myList.get(position);//get the ride
-            //show the ride details in row of listView like this:
-            nameTextView.setText(ride.getClientName());
-            dateTextView.setText(ride.getEndTime().toString());
-            sourceTextView.setText(ride.getSourceLocation());
-            destTextView.setText(ride.getDestinationLocation());
-            return convertView;
-        }
-    };
-
-            listView.setAdapter(adapter);//set the view
-}
-        catch (Exception e)
-                {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        if (convertView == null) {
+                            convertView = View.inflate(getActivity(), R.layout.row_item, null);//init convertView
+                        }
+                        //take view widgets from view that define in my_ride_item xml file
+                        TextView nameTextView = (TextView) convertView.findViewById(R.id.rowItem_name);
+                        TextView dateTextView = (TextView) convertView.findViewById(R.id.date_my_ride_item);
+                        TextView sourceTextView = (TextView) convertView.findViewById(R.id.rowItem_source);
+                        TextView destTextView = (TextView) convertView.findViewById(R.id.rowItem_dest);
+                        Button chooseTravel = (Button) convertView.findViewById(R.id.rowItem_button);
+                        chooseTravel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {//implement the onClick of button that add client of ride to contacr in phone
+                                View parent = (View) view.getParent().getParent().getParent().getParent().getParent();
+                                ListView ls = (ListView) parent.getParent();//the listView
+                                int position = ls.getPositionForView(parent);//get the position of the ride that the user click on it's button-TakeRide
+                                Travel travel = listTravels.get(position);//get ride
+                                //insert to contact
+                                Intent intent = new Intent(Intent.ACTION_INSERT);
+                                intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+                                intent.putExtra(ContactsContract.Intents.Insert.NAME, travel.getClientName());
+                                intent.putExtra(ContactsContract.Intents.Insert.PHONE, travel.getClientPhone());
+                                startActivity(intent);
+                            }
+                        });
+                        Travel travel = (Travel) listTravels.get(position);//get the ride
+                        //show the ride details in row of listView like this:
+                        nameTextView.setText(travel.getClientName());
+                        dateTextView.setText(travel.getEndTime().toString());
+                        sourceTextView.setText(travel.getStartLocation());
+                        destTextView.setText(travel.getDestination());
+                        return convertView;
+                    }
+                };
+                listView.setAdapter(adapter);//set the view
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
-                }
-
-                }
-
-    /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            checkedDrive = (Travel) listView.getItemAtPosition(position);
-            String detail ="";
-            detail += getString(R.string.name)+ ": "+ checkedDrive.getNameClient() + "\n"
-                    + getString(R.string.phone)+ ": " + checkedDrive.getPhoneClient() + "\n"
-                    + getString(R.string.start_point)+ ": " + checkedDrive.getStartPointString() +"\n";
-            detailDrive.setText(detail);
-            ButtonAddToContact.setEnabled(true);
+            }
         }
-    });
-*/
+
 
     @Override
     public void onAttach(Context context) {
