@@ -8,6 +8,7 @@ import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Travel;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Backend;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Class DataBaseList to add travel in a list
@@ -23,7 +24,7 @@ public class DataBaseList implements Backend {
      * @param travel
      * @throws Exception
      */
-    @Override
+    //@Override
     public void addTravel(Travel travel) throws Exception {
         try{
             for (Travel item: travels)
@@ -40,6 +41,11 @@ public class DataBaseList implements Backend {
         {
             throw e;
         }
+    }
+
+    @Override
+    public void addTravel(Travel travel, DataBaseFB.Action<Long> action) {
+
     }
 
     @Override
@@ -98,4 +104,47 @@ public class DataBaseList implements Backend {
         }
         return false;
     }
+
+
+    //////////////////////////////:
+    @Override
+    public ArrayList<String> getNamesDrivers() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getAvailableTravel() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getFinsishTravels() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getTravelsByDriver(Driver driver) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getTravelsByCity(String city) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getTravelsInDistance(Double distance) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getTravelsInDistance(Date date) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Travel> getTravelsPrice(Double price) {
+        return null;
+    }
+    ///////////////////////////////////////
 }

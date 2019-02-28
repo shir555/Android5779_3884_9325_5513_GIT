@@ -2,6 +2,7 @@ package com.example.morganeankonina.android5779_3884_9325_5513_2.entities;
 
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Backend;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.BackendFactory;
+import com.example.morganeankonina.android5779_3884_9325_5513_2.model.datasource.DataBaseFB;
 
 import java.sql.Time;
 import java.util.Random;
@@ -67,16 +68,6 @@ public class Travel {
         this.clientPhone = clientPhone;
         this.clientEmail = clientEmail;
         this.price=rand.nextInt(40)+10;
-
-        try {
-            BackendFactory backendFactory = new BackendFactory();
-            Backend backend = backendFactory.getInstance();
-            backend.addTravel(this);
-        }
-        catch (Exception e)
-        {
-
-        }
 
     }
     /**-------------------------Getters-------------------------------------------------------------

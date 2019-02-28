@@ -6,7 +6,7 @@ package com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend;
 public final class BackendFactory {
     static Backend instance = null;
 
-    public static String mode = "lists";
+    public static String mode = "fb";
 
     /**
      * Factory method create the instance of the backend
