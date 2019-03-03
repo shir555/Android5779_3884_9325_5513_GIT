@@ -16,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.morganeankonina.android5779_3884_9325_5513_2.R;
+import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Driver;
+
 //this is shir liya trying to save changes
 public class NavMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Driver driver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,9 @@ public class NavMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Intent intent=getIntent();
+        driver= (Driver) intent.getSerializableExtra("driver");
     }
 
     @Override
@@ -88,7 +94,9 @@ public class NavMenu extends AppCompatActivity
 
         if (id == R.id.nav_avTravels) {
             Intent available = new Intent(NavMenu.this,AvailableTravels.class);
+            available.putExtra("driver", driver);
             startActivity(available);
+
         }
         else if (id == R.id.nav_myTavels) {
             Intent myTravels= new Intent(NavMenu.this, MyTravels.class);

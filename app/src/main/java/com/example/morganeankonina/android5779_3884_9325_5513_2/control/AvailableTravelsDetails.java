@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,10 +68,10 @@ public class AvailableTravelsDetails extends Fragment {
     {
         try {
             //put a left drawable in all the textViews in this details fragment
-            addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_phone), clientPhone);
-            addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_email), clientEmail);
-            addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_location), start);
-            addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_location), destination);
+            //addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_phone), clientPhone);
+            //addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_email), clientEmail);
+            //addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_location), start);
+            //addLeftDrawable(getResources().getDrawable(R.drawable.ic_action_little_location), destination);
 
             //put in all the textViews the values of the ride
             clientName.setText("Name: " + travel.getClientName());

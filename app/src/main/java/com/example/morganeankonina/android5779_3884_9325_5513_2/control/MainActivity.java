@@ -15,16 +15,27 @@ import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Driver;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Travel;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Backend;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.BackendFactory;
+import com.example.morganeankonina.android5779_3884_9325_5513_2.model.datasource.DataBaseFB;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 public class MainActivity extends AppCompatActivity {
     BackendFactory backendFactory = new BackendFactory();
-    final Backend backend = backendFactory.getInstance();
+    final Backend backend = backendFactory.getInstance(this);
 
     Travel travel1 = new Travel(Travel.States.FREE, "Ashdood", "Jerusalem", new Time(0, 0, 0), new Time(0, 0, 0), "Yehouda", "0586808006", "ankoninam@hotmail.com");
     Travel travel2 = new Travel(Travel.States.FREE, "BaitVagan", "BeitHadfouss", new Time(0, 0, 0), new Time(0, 0, 0), "Yaacov", "0586808006", "ankoninam@hotmail.com");
 
+    public Driver getRegisteredDriver() {
+        return registeredDriver;
+    }
+
+    public void setRegisteredDriver(Driver registeredDriver) {
+        this.registeredDriver = registeredDriver;
+    }
+
+    Driver registeredDriver;
     SharedPreferences prefs;
 
 
@@ -63,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
             Button signIn = (Button) findViewById(R.id.login_signIn);
 
             final String prefName="";
@@ -77,7 +87,17 @@ public class MainActivity extends AppCompatActivity {
                         TextView passwordText = (TextView) findViewById(R.id.login_password);
                         final String password = passwordText.getText().toString();
 
-                        Driver driver = new Driver(username, password, "", "", "", "", "", "");
+                        Driver driver = ((DataBaseFB) BackendFactory.getInstance(MainActivity.this)).valid(username, password);
+                        //get the current driver
+                        if (driver != null) {//move the driver to his space
+                            registeredDriver=driver;
+                            //Intent intent = new Intent(MainActivity.this, AvailableTravels.class);
+                            //intent.putExtra("driver", driver);
+                            //startActivity(intent);//there are not driver with this identify details
+                        } else {
+                            Toast.makeText(MainActivity.this, "Try again",
+                                    Toast.LENGTH_LONG).show();//message to user
+                        }
                         if(backend.checkDriverValid(driver)==false)
                             throw new Exception("Your information is not correct! Please enter again or register!");
 
@@ -88,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
                         Intent signIn = new Intent(MainActivity.this, NavMenu.class);
+                        signIn.putExtra("driver", driver);
                         startActivity(signIn);
                     } catch (Exception e) {
                         Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
@@ -106,6 +127,5 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
             toast.show();
         }
-
     }
 }

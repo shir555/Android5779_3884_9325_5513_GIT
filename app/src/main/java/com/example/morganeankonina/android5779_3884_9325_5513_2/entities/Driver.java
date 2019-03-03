@@ -1,11 +1,12 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * the Driver class describes the properties of the driver
  */
-public class Driver {
+public class Driver implements Serializable{
     private String username;
     private String password;
     private String familyName;
@@ -14,7 +15,7 @@ public class Driver {
     private String phone;
     private String email;
     private String visaCard;
-    private Travel refTravel =new Travel();
+    public Travel refTravel =new Travel();
 
     /**
      * Empty ctor

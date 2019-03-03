@@ -38,7 +38,7 @@ public class DataBaseFB implements Backend {
     static ArrayList<Travel> travelsList;
 
     static DatabaseReference driversRef;
-    static ArrayList<Travel> driversList;
+    static ArrayList<Driver> driversList;
 
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -105,8 +105,8 @@ public class DataBaseFB implements Backend {
         String key = String.valueOf(driver.getId());
         myRef.child(key).setValue(driver);
         ////String key= Integer.toString(travel.getId());
-        (myRef.child(key).setValue(driver.toString())).addOnSuccessListener(new OnSuccessListener<Void>(){
-        //driversRef.child(driver.getId()).setValue(driver).addOnSuccessListener(new OnSuccessListener<Void>() {
+        (myRef.child(key).setValue(driver.toString())).addOnSuccessListener(new OnSuccessListener<Void>() {
+            //driversRef.child(driver.getId()).setValue(driver).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 //action.onSuccess(new Long(driver.getId()));
@@ -128,7 +128,8 @@ public class DataBaseFB implements Backend {
         addDriverToFirebase(driver, new Action<String>() {
             @Override
             public void onSuccess(String obj) {
-                System.out.println("Successful");            }
+                System.out.println("Successful");
+            }
 
             @Override
             public void onFailure(Exception exception) {
@@ -192,5 +193,52 @@ public class DataBaseFB implements Backend {
     public ArrayList<Travel> getTravelsPrice(Double price) {
         return null;
     }
-//////////////////////////////////////////////
+
+    /////////////////////////////////////////////
+    @Override
+    public ArrayList<Travel> getFilteredTravels(String word) {
+        ArrayList<Travel> matchingTravels = new ArrayList<>();
+        for (Travel item : travelsList) {
+            if (item.getClientName().equals(word) || item.getClientEmail().equals(word) ||
+                    item.getClientPhone().equals(word) || item.getStartLocation().equals(word) ||
+                    item.getDestination().equals(word)) {
+                matchingTravels.add(item);
+            }
+        }
+        return matchingTravels;
+    }
+
+    @Override
+    public ArrayList<Travel> getAllTravelDrivers(Driver driver) {
+        ArrayList<Travel> matchingTravels = new ArrayList<>();
+        for (Travel item : travelsList) {
+            if (driver.getRefTravel().equals(item)) {
+                matchingTravels.add(item);
+            }
+        }
+        return matchingTravels;
+    }
+
+    @Override
+    public Driver valid(String username, String password){
+        try {
+            for (Driver item : driversList) {
+                if (username.equals(item.getUsername()) && password.equals(item.getPassword())) {
+                    return item;
+                }
+
+            }
+            return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }
+
+
+
+

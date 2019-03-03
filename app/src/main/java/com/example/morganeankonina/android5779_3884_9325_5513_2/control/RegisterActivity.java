@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     BackendFactory backendFactory = new BackendFactory();
-                    final Backend backend = backendFactory.getInstance();
+                    final Backend backend = backendFactory.getInstance(RegisterActivity.this);
 
                     /**
                      * Get all information from view

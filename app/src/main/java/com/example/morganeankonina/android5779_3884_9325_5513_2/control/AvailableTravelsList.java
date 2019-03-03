@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +46,7 @@ public class AvailableTravelsList extends Fragment {
 
     //****************************
     BackendFactory backendFactory=new BackendFactory();
-    Backend backend=backendFactory.getInstance();
+    Backend backend=backendFactory.getInstance(getActivity());
 
     ArrayAdapter<Travel> adapter;
     ArrayList<Travel> listTravels;
@@ -72,10 +72,6 @@ public class AvailableTravelsList extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static AvailableTravelsList newInstance(String param1, String param2) {
         AvailableTravelsList fragment = new AvailableTravelsList();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -100,7 +96,7 @@ public class AvailableTravelsList extends Fragment {
                     //fragDetailsTravels.insertDetailsTravel(travel);
                 }
             });
-            //updateListView(BackendFactory.getInstance(getActivity()).getAllDriverRides(((DriverActivity) getActivity()).getCurrentDriver()));//put all the current driver rides in listView
+            updateListView(BackendFactory.getInstance(getActivity()).getAllTravelDrivers(((AvailableTravels) getActivity()).getRegisterDriver()));//put all the current driver rides in listView
             return view;
         } catch (Exception e) {
             Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)

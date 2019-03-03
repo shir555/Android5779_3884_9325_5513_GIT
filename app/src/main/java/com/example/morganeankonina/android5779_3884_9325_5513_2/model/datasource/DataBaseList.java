@@ -147,4 +147,27 @@ public class DataBaseList implements Backend {
         return null;
     }
     ///////////////////////////////////////
+
+    @Override
+    public ArrayList<Travel> getFilteredTravels(String word){
+        ArrayList<Travel> matchingTravels=new ArrayList<>();
+        for (Travel item: travels)
+        {
+            if(item.getClientName().equals(word)|| item.getClientEmail().equals(word)|| item.getClientPhone().equals(word)|| item.getStartLocation().equals(word)||item.getDestination().equals(word))
+            {
+                matchingTravels.add(item);
+            }
+        }
+        return  matchingTravels;
+    }
+
+    @Override
+    public ArrayList<Travel> getAllTravelDrivers(Driver driver) {
+        return null;
+    }
+
+    @Override
+    public Driver valid(String usernme, String password) {
+        return null;
+    }
 }

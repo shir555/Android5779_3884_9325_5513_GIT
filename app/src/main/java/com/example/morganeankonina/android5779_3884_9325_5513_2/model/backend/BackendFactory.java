@@ -1,5 +1,7 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend;
 
+import android.content.Context;
+
 /**
  * Class BackendFactory choose the type of DB
  */
@@ -12,7 +14,7 @@ public final class BackendFactory {
      * Factory method create the instance of the backend
      * @return Backend
      */
-    public final static Backend getInstance() {
+    public final static Backend getInstance(Context context) {
         if (mode == "lists") {
             if (instance == null)
                 instance = new com.example.morganeankonina.android5779_3884_9325_5513_2.model.datasource.DataBaseList();

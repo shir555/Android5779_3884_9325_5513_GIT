@@ -51,4 +51,7 @@ public interface Backend
     public ArrayList<Travel> getTravelsInDistance(Double distance);
     public ArrayList<Travel> getTravelsInDistance(Date date);
     public ArrayList<Travel> getTravelsPrice(Double price);
+    public ArrayList<Travel> getFilteredTravels(String word);
+    public ArrayList<Travel> getAllTravelDrivers(Driver driver);
+    public Driver valid(String usernme, String password);
 }

@@ -32,7 +32,7 @@ public class MyTravelsList extends Fragment {
 
     //****************************
     BackendFactory backendFactory=new BackendFactory();
-    Backend backend=backendFactory.getInstance();
+    Backend backend=backendFactory.getInstance(getActivity());
 
     ListView listView;
 
