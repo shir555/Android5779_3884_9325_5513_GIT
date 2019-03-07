@@ -1,5 +1,7 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.control;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,7 +51,9 @@ public class NavMenu extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Intent intent=getIntent();
-        driver= (Driver) intent.getSerializableExtra("driver");
+        //driver= (Driver) intent.getSerializableExtra("driver");
+        String pass=intent.getStringExtra("password" );
+        String un=intent.getStringExtra("username" );
     }
 
     @Override
@@ -89,13 +93,27 @@ public class NavMenu extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        //////check
+        FragmentManager manager=getFragmentManager();
+        FragmentTransaction transaction=manager.beginTransaction();
+        FilterAvailableTravels filterFrag=new FilterAvailableTravels();
+        AvailableTravelsList listFrag=new AvailableTravelsList();
+        AvailableTravelsDetails detailsFrag=new AvailableTravelsDetails();
+        /////
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_avTravels) {
             Intent available = new Intent(NavMenu.this,AvailableTravels.class);
-            available.putExtra("driver", driver);
+            //available.putExtra("username", driver.getUsername());
+            //available.putExtra("password", driver.getPassword());
             startActivity(available);
+
+            //transaction.add(R.id.filter_word,filterFrag, "AvailableTravelsFilterTag");
+            //transaction.replace(R.id.availableList, listFrag, "AvailableTravelsListTag");
+            //transaction.replace(R.id.availableDetails, detailsFrag, "AvailableTravelsDetailsTag");
+            //transaction.commit();
 
         }
         else if (id == R.id.nav_myTavels) {

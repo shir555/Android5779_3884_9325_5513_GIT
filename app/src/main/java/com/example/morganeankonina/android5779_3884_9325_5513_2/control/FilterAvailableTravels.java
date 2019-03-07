@@ -4,13 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.support.v4.app.*;
 
 import com.example.morganeankonina.android5779_3884_9325_5513_2.R;
 import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Travel;
@@ -32,9 +33,8 @@ public class FilterAvailableTravels extends Fragment {
     ArrayList<Travel> travelList;
 
     Button search;
-    EditText serachWord;
-    public FilterAvailableTravels() {
-    }
+    EditText searchWord;
+    public FilterAvailableTravels() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class FilterAvailableTravels extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_filter_available_travels, container, false);
+        final View view = inflater.inflate(R.layout.fragment_filter_available_travels, container, false);
         search=(Button)view.findViewById(R.id.filter_buttonSearch);
-        EditText searchWord=(EditText)view.findViewById(R.id.filter_search);
+        searchWord=(EditText)view.findViewById(R.id.filter_search);
         String word=searchWord.getText().toString();
         while(word.length()==0)
         {
@@ -55,9 +55,16 @@ public class FilterAvailableTravels extends Fragment {
             searchWord=(EditText)view.findViewById(R.id.filter_search);
             word=searchWord.getText().toString();
         }
-        travelList=backend.getFilteredTravels(word);
-        AvailableTravelsList fragListTravels = (AvailableTravelsList) getActivity().getFragmentManager().findFragmentByTag("AvailableTravelsDetailsTag");
-        fragListTravels.updateListView(travelList);
+        final String finalword=word;
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                travelList=backend.getFilteredTravels(finalword);
+            }
+        });
+
+        //AvailableTravelsList fragListTravels = (AvailableTravelsList) getActivity().getFragmentManager().findFragmentByTag("AvailableTravelsDetailsTag");
+        //fragListTravels.updateListView(travelList);
         return view;
     }
 

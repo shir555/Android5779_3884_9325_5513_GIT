@@ -146,7 +146,12 @@ public class DataBaseList implements Backend {
     public ArrayList<Travel> getTravelsPrice(Double price) {
         return null;
     }
-    ///////////////////////////////////////
+
+    @Override
+    public Driver getDriverByDetails(String un, String pass) {
+        return valid(un, pass);
+    }
+
 
     @Override
     public ArrayList<Travel> getFilteredTravels(String word){

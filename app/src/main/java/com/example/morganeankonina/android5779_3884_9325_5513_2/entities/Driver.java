@@ -1,20 +1,19 @@
 package com.example.morganeankonina.android5779_3884_9325_5513_2.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * the Driver class describes the properties of the driver
  */
-public class Driver implements Serializable{
-    private String username;
-    private String password;
-    private String familyName;
-    private String name;
-    private String id;
-    private String phone;
-    private String email;
-    private String visaCard;
+public class Driver {
+    protected String username;
+    protected String password;
+    protected String familyName;
+    protected String name;
+    protected String id;
+    protected String phone;
+    protected String email;
+    protected String visaCard;
     public Travel refTravel =new Travel();
 
     /**

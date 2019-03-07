@@ -5,7 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.app.Fragment;
+
+import android.support.v4.app.*;
+//import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,11 @@ import com.example.morganeankonina.android5779_3884_9325_5513_2.entities.Travel;
  * create an instance of this fragment.
  */
 public class AvailableTravelsDetails extends Fragment {
-
-    TextView clientName;
-    TextView clientPhone;
-    TextView clientEmail;
-    TextView start;
-    TextView destination;
+    public TextView clientName;
+    public TextView clientPhone;
+    public TextView clientEmail;
+    public TextView start;
+    public TextView destination;
 
     public AvailableTravelsDetails() {
         // Required empty public constructor
@@ -53,8 +54,9 @@ public class AvailableTravelsDetails extends Fragment {
         }
         catch (Exception e)
         {
-            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            //Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
+                    //.setAction("Action", null).show();
+            System.out.println(e.getMessage());
             return view;
         }
     }
@@ -124,9 +126,7 @@ public class AvailableTravelsDetails extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
-
     @Override
     public void onDetach() {
         super.onDetach();

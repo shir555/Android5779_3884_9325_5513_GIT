@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.app.Fragment;
+
+import android.support.v4.app.*;
+//import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,15 +94,16 @@ public class AvailableTravelsList extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Travel travel = listTravels.get(position);
-                    AvailableTravelsDetails fragDetailsTravels = (AvailableTravelsDetails) getActivity().getFragmentManager().findFragmentByTag("AvailableTravelsDetailsTag");
+                    //AvailableTravelsDetails fragDetailsTravels = (AvailableTravelsDetails) getActivity().getFragmentManager().findFragmentByTag("AvailableTravelsDetailsTag");
                     //fragDetailsTravels.insertDetailsTravel(travel);
                 }
             });
             updateListView(BackendFactory.getInstance(getActivity()).getAllTravelDrivers(((AvailableTravels) getActivity()).getRegisterDriver()));//put all the current driver rides in listView
             return view;
         } catch (Exception e) {
-            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            //Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
+                    //.setAction("Action", null).show();
+            System.out.println(e.getMessage());
             return view;
         }
     }

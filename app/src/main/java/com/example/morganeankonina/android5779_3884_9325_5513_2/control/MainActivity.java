@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+
             TextView usernameText = (TextView) findViewById(R.id.login_username);
             TextView passwordText = (TextView) findViewById(R.id.login_password);
             String usernameGet = "";
@@ -91,10 +92,9 @@ public class MainActivity extends AppCompatActivity {
                         //get the current driver
                         if (driver != null) {//move the driver to his space
                             registeredDriver=driver;
-                            //Intent intent = new Intent(MainActivity.this, AvailableTravels.class);
-                            //intent.putExtra("driver", driver);
-                            //startActivity(intent);//there are not driver with this identify details
-                        } else {
+
+                        }
+                        else {
                             Toast.makeText(MainActivity.this, "Try again",
                                     Toast.LENGTH_LONG).show();//message to user
                         }
@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
                         Intent signIn = new Intent(MainActivity.this, NavMenu.class);
-                        signIn.putExtra("driver", driver);
+                        signIn.putExtra("username", usernameText.getText().toString());
+                        signIn.putExtra("password", passwordText.getText().toString());
                         startActivity(signIn);
                     } catch (Exception e) {
                         Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);

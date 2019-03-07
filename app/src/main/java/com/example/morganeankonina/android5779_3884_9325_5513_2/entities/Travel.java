@@ -5,7 +5,7 @@ import com.example.morganeankonina.android5779_3884_9325_5513_2.model.backend.Ba
 import com.example.morganeankonina.android5779_3884_9325_5513_2.model.datasource.DataBaseFB;
 
 import java.sql.Time;
-import java.util.Random;
+//import java.util.Random;
 
 /**
  * The Travel class describes the properties of the travel
@@ -15,7 +15,7 @@ public class Travel {
 
     public enum States {FREE, TREATMENT, FINISH}
 
-    private int id;
+    private String id;
     private States state;
     private String startLocation;
     private String destination;
@@ -24,15 +24,14 @@ public class Travel {
     private String clientName;
     private String clientPhone;
     private String clientEmail;
-    private int price;
+    public int price;
 
-
-    Random rand = new Random();
+    //public Random rand = new Random();
     /**
      * Empty ctor
      */
     public Travel() {
-        this.id=++counter;
+        this.id=String.valueOf(++counter);
 
         this.state = States.FREE;
         this.startLocation = "";
@@ -42,7 +41,7 @@ public class Travel {
         this.clientName = "";
         this.clientPhone = "";
         this.clientEmail = "";
-        this.price=rand.nextInt(40)+10;
+        //this.price=rand.nextInt(40)+10;
 
     }
 
@@ -58,7 +57,7 @@ public class Travel {
      * @param clientEmail
      */
     public Travel(States state, String startLocation, String destination, Time startTime, Time endTime, String clientName, String clientPhone, String clientEmail) {
-        this.id=++counter;
+        this.id=String.valueOf(++counter);
         this.state = state;
         this.startLocation = startLocation;
         this.destination = destination;
@@ -67,12 +66,12 @@ public class Travel {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.clientEmail = clientEmail;
-        this.price=rand.nextInt(40)+10;
+        //this.price=rand.nextInt(40)+10;
 
     }
     /**-------------------------Getters-------------------------------------------------------------
      */
-    public int getId() { return id;}
+    public String getId() { return id;}
 
     public States getState() {
         return state;
@@ -178,7 +177,7 @@ public class Travel {
         if (obj == null || getClass() != obj.getClass())
             return false;
         Travel travel = (Travel) obj;
-        return getId() == travel.getId();
+        return this.getId().equals(travel.getId());
     }
 }
 

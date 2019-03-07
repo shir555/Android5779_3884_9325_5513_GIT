@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         Button ok = (Button) findViewById(R.id.register_ok);
 
         /**
@@ -55,13 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
                     BackendFactory backendFactory = new BackendFactory();
                     final Backend backend = backendFactory.getInstance(RegisterActivity.this);
 
+
                     /**
                      * Get all information from view
                      */
                     TextView usernameText = (TextView) findViewById(R.id.userEdit);
                     final String username = usernameText.getText().toString();
                     TextView passwordText = (TextView) findViewById(R.id.passwordEdit);
-                    final String passoword = passwordText.getText().toString();
+                    final String password = passwordText.getText().toString();
                     TextView lastNameText = (TextView) findViewById(R.id.LastNameEdit);
                     final String lastName = lastNameText.getText().toString();
                     TextView firstNameText = (TextView) findViewById(R.id.FirstNameEdit);
@@ -80,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                      */
                     if (username.length() < 1)
                         throw new Exception("Please enter your start point!");
-                    if (passoword.length() < 1)
+                    if (password.length() < 1)
                         throw new Exception("Please enter your destination!");
                     if (lastName.length() < 1)
                         throw new Exception("Please enter your name!");
@@ -99,18 +101,18 @@ public class RegisterActivity extends AppCompatActivity {
                     if (phoneValid(phone) == false)
                         throw new Exception("Your phone is not valid. Please enter again!");
 
-                    Driver driver=new Driver(username, passoword, lastName, firstName, id, phone, email, credit);
+                    Driver driver=new Driver(username, password, lastName, firstName, id, phone, email, credit);
                     String driverDetails=backend.addDriver(driver);
-                    Toast toast = Toast.makeText(getApplicationContext(),"Your information added successufully\n"+driverDetails, Toast.LENGTH_LONG);
-                    toast.show();
+                    //Toast toast = Toast.makeText(getApplicationContext(),"Your information added successufully\n"+driver.getName(), Toast.LENGTH_LONG);
+                    //toast.show();
 
                     Intent goLogIn= new Intent(RegisterActivity.this, MainActivity.class);
                     goLogIn.putExtra("username", username);
-                    goLogIn.putExtra("password ", passoword);
+                    goLogIn.putExtra("password ", password);
                     startActivity(goLogIn);
 
                 } catch (Exception e) {
-                    Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), e.getMessage()+"3333", Toast.LENGTH_LONG);
                     toast.show();
                     //e.printStackTrace();
                 }
